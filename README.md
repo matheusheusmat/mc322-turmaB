@@ -1,10 +1,10 @@
-# ** MC322 - Turma B **
+# **MC322 - Turma B**
 
-# ** Aluno **
+# **Aluno**
 	Matheus Hencklein Ponte
 
-# ** RA **
+# **RA**
 	RA: 247277
 
-# ** Curso **
+# **Curso**
 	Engenharia da Computação
