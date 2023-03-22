@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Sinistro {
     private int id;
     private String data;
@@ -32,6 +34,14 @@ public class Sinistro {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+    
+    public void gerarId() {
+    	Random aleat = new Random();
+    	int novoId = aleat.nextInt(10000);
+    	System.out.print(novoId);
+    	this.setId(novoId);
+    }
+    
     
     public String toString() {
     	String str = "-- Dados do sinistro --" + "\nID: " + this.getId() +

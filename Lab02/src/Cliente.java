@@ -61,7 +61,7 @@ public class Cliente {
     	if (cpfSoNum.length() != 11) 
     		return false;
     	
-    	for (int i = 0; i < 11; i++) { // Verificar se digitos são todos iguais
+    	for (int i = 0; i < 11; i++) { // Verificar se digitos são todos iguais.
     		char digAtual = cpfSoNum.charAt(i);
     		if (i == 10)
     			return false;
@@ -71,7 +71,7 @@ public class Cliente {
     	}
     	
     	int primDigVer;
-    	int soma = 0; // Cálculo de digito verificador
+    	int soma = 0; // Cálculo de primeiro dígito verificador.
     	for (int i = 0; i < 9; i++) {
     		soma += (10 - i) * Character.getNumericValue(cpfSoNum.charAt(i));
     	}
@@ -85,7 +85,7 @@ public class Cliente {
     		return false;
     	
     	int segDigVer;
-    	soma = 0; // Cálculo de digito verificador
+    	soma = 0; // Cálculo de segundo dígito verificador.
     	for (int i = 0; i < 10; i++) {
     		soma += (11 - i) * Character.getNumericValue(cpfSoNum.charAt(i));
     	}
@@ -97,11 +97,11 @@ public class Cliente {
     		segDigVer = 11 - resto;
     	if (segDigVer != Character.getNumericValue(cpfSoNum.charAt(10)))
     		return false;
-    	return true;
+    	return true; // Se passar pelas verificações, o CPF é válido.
     }
     
     public String toString() {
-    	String str = "-- Dados do cliente --" + "\nNome: " + this.getNome() +
+    	String str = "\n-- Dados do cliente --" + "\nNome: " + this.getNome() +
     	"\nCPF: " + this.getCpf() +
     	"\nData de Nascimento: " + this.getDataNascimento() +
     	"\nIdade: " + this.getIdade() +
