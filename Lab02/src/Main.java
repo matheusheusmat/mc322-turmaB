@@ -2,6 +2,26 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		/* Método main, que cria os objetos e realiza a leitura do usuário para
+		 * cada atributo.
+		 * 
+		 * São criados:
+		 * - Objeto da classe Cliente (cliente1), com os atributos nome (String),
+		 * dataNascimento (String), idade (int), endereco (String) e cpf (String).
+		 * - Objeto da classe Seguradora (seg1), com os atributos nome (String),
+		 * telefone (String), email (String) e endereco (String).
+		 * - Objeto da classe Veiculo (veiculo1), com os atributos placa (String),
+		 * marca (String) e modelo (String).
+		 * - Objeto da classe Sinistro (sin1), com os atributos id (int), data
+		 * (String) e endereco (String).
+		 * 
+		 * Há uma verificação do CPF atribuido a um objeto da classe Cliente.
+		 * Também, há um gerador de id aleatório para um objeto da classe Sinistro.
+		 * 
+		 * Ao fim, são impressos os dados de forma organizada, de acordo com a função
+		 * toString() de cada classe.
+		 * */
+		
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println(" -- Cadastro de cliente -- ");
@@ -62,5 +82,4 @@ public class Main {
 
 		input.close();
 	}
-
 }
