@@ -1,6 +1,67 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/* Classe "Seguradora"
+ * Variáveis de instância
+ - String nome
+ - String telefone
+ - String email
+ - String endereco
+ - ArrayList<Sinistro> listaSinistros
+ - ArrayList<Cliente> listaClientes
+ 
+ * Getters e setters para cada variável.
+ 
+ * Construtor para a classe, recebendo cada uma das variaveis acima, com exceção
+ de listaSinistros e listaClientes. Estas serão inicializadas como vazias, para
+ posterior adição. 
+ 
+ * Métodos de classe
+ + boolean isInteger(String str): retorna true caso for um valor inteiro, e false
+ caso não. Isso é feito pelo tratamento de exceções.
+  
+ * Métodos de instância 
+ + boolean cadastrarCliente(Cliente cliente): dado um novo Cliente, o adiciona na 
+ ArrayList<Cliente> listaClientes.
+ + Cliente encontrarCliente(String nomeCliente): dado o nome de um Cliente, o procura
+ na listaClientes. Caso estiver presente, o retorna (Cliente c). Caso contrário, retorna
+ um Cliente null.
+ + boolean removerCliente(String nomeCliente): dado o nome de um Cliente, o procura e o
+ remove, caso estiver presente. São impressas mensagens de ERRO no caso de não houver clientes
+ cadastrados na Seguradora ou o cliente com o nome especificado não ter sido encontrado. Nesses
+ casos, retorna false. Caso contrário, o remove da lista e retorna true, mais uma mensagem de
+ sucesso.
+ + void listarClientes(String tipoCliente): imprime os todos os Clientes de um tipo 
+ específico - PF imprime todas as instâncias ClientePF, PJ, ClientePJ - dado pelo 
+ usuário. Imprime mensagens de ERRO nos casos de não haver clientes cadastrados na
+ Seguradora, de a entrada não ser PF, pf, PJ ou pj, ou de não haver clientes cadastrados
+ que sejam da classe especificada. Caso contrário, todas as instâncias ClientePF ou
+ ClientePJ armazenadas em listaClientes são impressas, segundo o seu método toString().
+ + void cadastrarVeiculo(Scanner input): se não há clientes cadastrados na seguradora ou
+ se o cliente cujo nome é pedido ao usuário não for encontrado, imprime mensagens de erro.
+ Caso contrário, cadastra o veículo no Cliente, chamando outro método (cadastrarVeiculo).
+ Mais detalhes desse método na classe Cliente.
+ + void listarVeiculos(String nomeCliente): dado o nome de um Cliente, se não houver clientes
+ na seguradora, se o cliente com o nome especificado não for encontrado, ou se não houver 
+ veículos cadastrados para aquele cliente, são impressas mensagens de ERRO. Caso contrário, 
+ serão impressos todos os veículos em listaVeiculos daquele Cliente, segundo o toString() 
+ do veículo.
+ + boolean gerarSinistro(Scanner input): pede o nome de um cliente. Caso não houver clientes 
+ cadastrados na Seguradora, caso o cliente com o nome dado não for encontrado, ou se não 
+ houver veículos cadastrados em seu nome, imprime mensagens de ERRO. Caso contrário, são 
+ pedidas informações sobre o incidente, e essas, mais o Cliente, o Veiculo e a Seguradora 
+ são armazenados em listaSinistros.
+ + boolean visualizarSinistro(String nomeCliente): dado um nome de um Cliente, se a lista 
+ de Sinistros da Seguradora estiver vazia ou se não houver Sinistros cadastrados no nome do
+ cliente, imprime mensagens de ERRO. Caso contrário, imprime todos os sinistros para aquele
+ cliente.
+ + void listarSinistros(): lista todos os Sinistros cadastrados na listaSinistros da 
+ Seguradora, caso houver. Caso não, imprime uma mensagem de erro.
+ + @Override String toString(): retorna uma String com as seguintes variáveis de 
+ instância de Seguradora: nome, telefone, email e endereco.
+ */
+
+
 public class Seguradora {
 	private String nome;
 	private String telefone;
@@ -77,8 +138,6 @@ public class Seguradora {
 		}
 		return (Cliente)null;
 	}
-	
-	
 	
 	
 	public boolean removerCliente(String nomeCliente) {

@@ -2,22 +2,19 @@ import java.util.Scanner;
 import java.util.Date;
 
 
-/*
-• Cadastrar e remover pelo menos 1 Cliente (ClientePF ou ClientePJ);
-• Chamar os m´etodos validarCPF(cpf: String) (ClientePF) e validarCNPJ(cnpj: String) (ClientePJ);
-• Adicionar pelo menos 1 Veiculo em cada Cliente instanciado;
-• Instanciar pelo menos 1 objeto de Seguradora;
-• Cadastrar pelo menos 2 clientes em Seguradora (sem remover), sendo 1 do tipo ClientePF e 1 do tipo
-ClientePJ;
-• Gerar pelo menos 1 Sinistro;
-• Chamar o m´etodo toString() de cada classe;
-• Chamar os m´etodos listarClientes (tipoCliente: String), visualizarSinistro(cliente: String) e listarSinistros() da classe Seguradora;
-• Implementar e chamar um m´etodo que fa¸ca leitura de dados usando a fun¸c˜ao System.In
-
+/* Classe "Main" for lab03.java by heusmat
+ * Métodos:
+ + void menuInicial(): imprime o menu com as opções.
+ + boolean validarData(String dataStr): verifica se a data dada na entrada é válida, 
+ seguindo o modelo DD/MM/AAAA.
+ + Date formatarData(String dataStr, Scanner input): dada uma String, retorna uma data 
+ formatada do modo desejado, se for possível.
+ + Seguradora criarSeguradora(Scanner input): cria uma instância da classe Seguradora.
+ + ClientePF criarClientePF(Scanner input): cria uma instância da classe ClientePF, e
+ adiciona-a à listaClientes da Seguradora.
+ + ClientePJ criarClientePJ(Scanner input): cria uma instância da classe ClientePJ, e
+ adiciona-a à listaCliente da Seguradora.
  */
-
-//A fazer: data 0902041925 passa. Corrigir.
-//corrigir toString PF.
 
 public class Main {
 	public static void menuInicial() {
@@ -35,10 +32,7 @@ public class Main {
 	}
 	
 	
-	
-	
-	
-	public static boolean validarData(String dataStr, Scanner input) {
+	public static boolean validarData(String dataStr) {
 		String dataSoNum = dataStr.replaceAll("[^0-9]", "");
 		if (dataStr.length() != 10 || dataSoNum.length() != 8 ||
 		dataStr.charAt(2) != '/' || dataStr.charAt(5) != '/') {
@@ -49,11 +43,12 @@ public class Main {
 		return true;
 	}
 	
+	
 	public static Date formatarData(String dataStr, Scanner input) {
-		boolean dataValida = validarData(dataStr, input);
+		boolean dataValida = validarData(dataStr);
 		while (!dataValida) {
 			dataStr = input.nextLine();
-			dataValida = validarData(dataStr, input);
+			dataValida = validarData(dataStr);
 		}
 		
 		int dia = Integer.parseInt(dataStr.substring(0, 2));
@@ -135,6 +130,7 @@ public class Main {
 		System.out.println("-- Cliente cadastrado com sucesso! --\n");
 		return cl;
 	}
+	
 	
 	public static ClientePJ criarClientePJ(Scanner input) {
 		System.out.print("Nome da Empresa: ");
@@ -235,7 +231,6 @@ public class Main {
 			}
 		}
 	}
-	
 	
 	
 }

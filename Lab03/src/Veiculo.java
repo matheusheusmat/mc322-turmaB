@@ -1,3 +1,19 @@
+
+/* Classe "Veiculo"
+ * Variáveis de instância:
+ - String placa
+ - String marca
+ - String modelo
+ - int anoFabricacao
+
+ * Getters e setters para cada variável.
+
+ * Construtor para a classe, recebendo cada uma das variaveis acima.
+
+ * Métodos de instância:
+ + @Override String toString(): retorna uma String com as variáveis de instância.
+ */
+
 public class Veiculo {
 	private String placa;
 	private String marca;
@@ -43,6 +59,7 @@ public class Veiculo {
 	public void setAnoFabricacao(int anoFabricacao) {
 		this.anoFabricacao = anoFabricacao;
 	}
+	
 	
 	@Override
 	public String toString() {

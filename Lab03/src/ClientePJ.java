@@ -1,6 +1,27 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/* Classe "ClientePJ" herda de classe "Cliente"
+ * Variáveis de instância:
+ - (final) String cnpj
+ - Date dataFundacao
+
+ * Getters e setters para cada variável.
+
+ * Construtor para a classe, recebendo cada uma das variaveis acima, mais as variáveis
+ da superclasse (nome, endereco).
+ 
+ * Métodos de classe:
+ + boolean validarCNPJ(String cnpj): dada uma String cnpj, verifica se é válido por meio 
+ do cálculo dos dois dígitos verificadores e da quantidade de dígitos numéricos. 
+ Mais detalhes no método.
+ 
+ * Métodos de instância:
+ + @Override String toString(): retorna uma String com as variáveis de instância. A data 
+ também é formatada usando a biblioteca java.text.SimpleDateFormat. 
+ */
+
+
 public class ClientePJ extends Cliente{
 	private final String cnpj;
 	private Date dataFundacao;
@@ -23,22 +44,23 @@ public class ClientePJ extends Cliente{
 	public String getCnpj() {
 		return cnpj;
 	}
-	// 09/01/2003
+
+	
 	public static boolean validarCNPJ(String cnpj) {
-		String cnpjSoNum = cnpj.replaceAll("[^0-9]", "");
-		if (cnpjSoNum.length() != 14)
-			return false;
+		String cnpjSoNum = cnpj.replaceAll("[^0-9]", ""); // Verifica se o CNPJ tem 14 dígitos numéricos.
+		if (cnpjSoNum.length() != 14)					  // Se não, retorna false: CNPJ inválido.
+			return false;									
 		
 		for (int i = 0; i < 14; i++) {
 			char digAtual = cnpjSoNum.charAt(i);
     		if (i == 13)
     			return false; 							// Se chegar no último, retorna falso: CPF inválido.
     		char digProx = cnpjSoNum.charAt(i + 1);
-    		if (digAtual != digProx) 					// Um número do CPF é sempre comparado com o dígito
+    		if (digAtual != digProx) 					// Um número do CNPJ é sempre comparado com o dígito
     			break;				 					// subsequente. Caso forem iguais, a checagem continua.
     	}
 		
-		int primDigVer;
+		int primDigVer;									// Cálculo do primeiro dígito verificador	
 		int soma = 0;
 		for (int i = 0; i < 4; i++) {
 			soma += (5 - i) * Character.getNumericValue(cnpjSoNum.charAt(i));
@@ -51,10 +73,10 @@ public class ClientePJ extends Cliente{
 			primDigVer = 0;
 		else
 			primDigVer = 11 - resto;
-		if (primDigVer != Character.getNumericValue(cnpjSoNum.charAt(12)))
-			return false;
+		if (primDigVer != Character.getNumericValue(cnpjSoNum.charAt(12))) // Se o dígito calculado é diferente do presente,
+			return false;												   // retorna falso: CNPJ inválido.
 		
-		int segDigVer;
+		int segDigVer;													   // Cálculo do segundo dígito verificador.
 		soma = 0;
 		for (int i = 0; i < 5; i++) {
 			soma += (6 - i) * Character.getNumericValue(cnpjSoNum.charAt(i));
@@ -68,11 +90,12 @@ public class ClientePJ extends Cliente{
 		else
 			segDigVer = 11 - resto;
 		
-		if (segDigVer != Character.getNumericValue(cnpjSoNum.charAt(13)))
-			return false;
+		if (segDigVer != Character.getNumericValue(cnpjSoNum.charAt(13)))  // Se o dígito calculado é diferente do presente,
+			return false;												   // retorna false: CNPJ inválido.
 		
-		return true;
+		return true;													   // Se passar pelas verificações, o CNPJ é válido
 	}
+	
 	
 	@Override
 	public String toString() {

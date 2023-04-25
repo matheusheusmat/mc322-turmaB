@@ -1,6 +1,30 @@
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+/* Classe "ClientePF" herda de classe "Cliente"
+ * Variáveis de instância: 
+ - (final) String cpf
+ - Date dataNascimento 
+ - date dataLicenca
+ - String educacao 
+ - String genero 
+ - String classeEconomica
+ 
+ * Getters e setters para cada variável.
+ 
+ * Construtor para a classe, recebendo cada uma das variáveis acima, mais as variáveis
+ da superclasse (nome, endereco).
+ 
+ * Métodos de classe:
+ + boolean validarCPF(String cpf): dada uma String cpf, verifica se é válido por meio 
+ do cálculo dos dois dígitos verificadores e da quantidade de dígitos numéricos. 
+ Mais detalhes no método.
+ 
+ * Métodos de instância:
+ + toString (override): retorna uma string com as variáveis de instância. A data também é
+ formatada usando a biblioteca java.text.SimpleDateFormat.
+ */
+
 public class ClientePF extends Cliente {
 	private final String cpf;
 	private Date dataNascimento;
@@ -66,8 +90,6 @@ public class ClientePF extends Cliente {
 	}	
 	
 	
-	
-	
 	public static boolean validarCPF(String cpf) {
 	   	String cpfSoNum = cpf.replaceAll("[^0-9]", ""); // Verificar se tem 11 dígitos numéricos.
 	    if (cpfSoNum.length() != 11) 					// Se não, retorna falso: CPF inválido.
@@ -127,7 +149,5 @@ public class ClientePF extends Cliente {
 				   + "Classe economica: " + this.getClasseEconomica() + "\n";
 		return str;
 	}
-	
-
 	
 }
