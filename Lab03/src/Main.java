@@ -61,7 +61,7 @@ public class Main {
 	
 	
 	public static Seguradora criarSeguradora(Scanner input) {
-		Seguradora seg = new Seguradora(null, null, null, null);
+		Seguradora seg = new Seguradora();
 		
 		System.out.print("Nome da Seguradora: ");
 		String inputAtual = input.nextLine();
@@ -97,7 +97,7 @@ public class Main {
 			cpfValido = ClientePF.validarCPF(cpf);
 		}
 		
-		ClientePF cl = new ClientePF(inputAtual, null, cpf, null, null, null, null, null);
+		ClientePF cl = new ClientePF(inputAtual, cpf);
 		
 		System.out.println("Data de nascimento, na forma DD/MM/AAAA\n"
 						   + "(exemplo, Nove de Março de 1999 - 09/03/1999):");
@@ -145,7 +145,7 @@ public class Main {
 			cnpjValido = ClientePJ.validarCNPJ(cnpj);
 		}
 		
-		ClientePJ cl = new ClientePJ(inputAtual, null, cnpj, null);
+		ClientePJ cl = new ClientePJ(inputAtual, cnpj);
 		
 		System.out.print("Endereco: ");
 		inputAtual = input.nextLine();

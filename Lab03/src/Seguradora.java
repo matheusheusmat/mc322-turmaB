@@ -70,11 +70,7 @@ public class Seguradora {
 	private ArrayList<Sinistro> listaSinistros;
 	private ArrayList<Cliente> listaClientes;
 	
-	public Seguradora(String nome, String telefone, String email, String endereco) {
-		this.nome = nome;
-		this.telefone = telefone;
-		this.email = email;
-		this.endereco = endereco;
+	public Seguradora() {
 		this.listaSinistros = new ArrayList<Sinistro>();
 		this.listaClientes = new ArrayList<Cliente>();
 	}
@@ -279,7 +275,7 @@ public class Seguradora {
 		System.out.print("Data do incidente: ");
 		inputAtual = input.nextLine();
 		
-		Sinistro sin = new Sinistro(inputAtual, null, this, v, c);
+		Sinistro sin = new Sinistro(inputAtual, this, v, c);
 		
 		System.out.print("Endereco onde houve o incidente: ");
 		inputAtual = input.nextLine();

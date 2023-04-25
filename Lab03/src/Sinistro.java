@@ -31,11 +31,10 @@ public class Sinistro {
 	private Veiculo veiculo;
 	private Cliente cliente;
 	
-	public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
+	public Sinistro(String data, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
 		this.id = contador;
 		contador++;
 		this.data = data;
-		this.endereco = endereco;
 		this.seguradora = seguradora;
 		this.veiculo = veiculo;
 		this.cliente = cliente;

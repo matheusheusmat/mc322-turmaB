@@ -26,11 +26,9 @@ public class ClientePJ extends Cliente{
 	private final String cnpj;
 	private Date dataFundacao;
 	
-	public ClientePJ(String nome, String endereco,
-			 		 String cnpj, Date dataFundacao) {
-		super(nome, endereco);
+	public ClientePJ(String nome, String cnpj) {
+		super(nome);
 		this.cnpj = cnpj;
-		this.dataFundacao = dataFundacao;
 	}
 
 	public Date getDataFundacao() {

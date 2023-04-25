@@ -20,13 +20,7 @@ public class Veiculo {
 	private String modelo;
 	private int anoFabricacao;
 	
-	public Veiculo(String placa, String marca, 
-				   String modelo, int anoFabricacao) {
-		this.placa = placa;
-		this.marca = marca;
-		this.modelo = modelo;
-		this.anoFabricacao = anoFabricacao;
-	}
+	public Veiculo() {}
 	
 	public String getPlaca() {
 		return placa;

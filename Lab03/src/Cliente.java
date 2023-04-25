@@ -28,9 +28,8 @@ public class Cliente {
 	private ArrayList<Veiculo> listaVeiculos;
 	
 	
-	public Cliente(String nome, String endereco) {
+	public Cliente(String nome) {
 		this.nome = nome;
-		this.endereco = endereco;
 		this.listaVeiculos = new ArrayList<Veiculo>();
 	}
 	
@@ -76,7 +75,7 @@ public class Cliente {
 	
 	
 	public void adicionarVeiculo(Scanner input) {
-		Veiculo veic = new Veiculo(null, null, null, 0);
+		Veiculo veic = new Veiculo();
 		
 		System.out.print("Marca do veiculo: ");
 		String inputAtual = input.nextLine();
@@ -90,8 +89,8 @@ public class Cliente {
 		inputAtual = input.nextLine();
 		boolean ehInteiro = isInteger(inputAtual);
 		while (!ehInteiro || inputAtual.length() != 4) {
-			System.out.print("-- ERRO: insira o ano na forma correta, com quatro "
-							   + "dígitos numéricos (AAAA): ");
+			System.out.println("-- ERRO: insira o ano na forma correta, com quatro "
+							   + "\ndígitos numéricos (AAAA): --");
 			inputAtual = input.nextLine();
 			ehInteiro = isInteger(inputAtual);
 		}
