@@ -381,6 +381,10 @@ public class Seguradora {
 		Cliente clDoador = segDoador.encontrarCliente(input);
 		if (clDoador == null)
 			return;
+		if (clDoador.getListaVeiculos().isEmpty()) {
+			System.out.println("-- ERRO! O cliente procurado nao possui veiculos cadastrados --");
+			return;
+		}
 		
 		System.out.println("-- DADOS DO DESTINATARIO --");
 		Seguradora segDest = Seguradora.encontrarSeguradora(input);
@@ -389,11 +393,17 @@ public class Seguradora {
 		Cliente clDest = segDest.encontrarCliente(input);
 		if (clDest == null)
 			return;
+
+		if (clDoador == clDest) {
+			System.out.println("-- ERRO! Nao é possivel transferir seguro de um cliente\npara ele mesmo! --\n");
+			return;
+		}
 		
 		for (Veiculo v : clDoador.getListaVeiculos()) {
 			clDest.getListaVeiculos().add(v);
 		}
 		clDoador.getListaVeiculos().clear();
+		System.out.println("-- Seguro transferido com sucesso! --");
 	}
 	
 	
