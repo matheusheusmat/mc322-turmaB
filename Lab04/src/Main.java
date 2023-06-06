@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
-	/* Classe "Main" for lab03.java by heusmat
+	/* Classe "Main" for lab04.java by heusmat
 	 * Métodos:
 	 - static MenuOperacoes lerOp(int opcaoInt): lê o número inserido pelo usuário, e
 	 retorna a descrição presente na opção correspondente na classe enum MenuOperacoes.
