@@ -3,6 +3,36 @@ import java.util.Date;
 import java.util.Scanner;
 
 public abstract class Seguro {
+/* Classe abstrata "Seguro"
+ * Variáveis de classe:
+ - static int contador
+ * Variáveis de instância:
+ - Date dataInicio
+ - Date dataFim
+ - Seguradora seguradora
+ - int qtdSinistrosCliente
+ - int qtdSinistrosCondutor
+ - ArrayList<Sinistro> listaSinistros
+ - ArrayList<Condutor> listaCondutores
+ - double valorMensal
+ 
+ * Getters e setters para cada variável.
+ 
+ * Construtor para a classe.
+	 
+ * Métodos de classe abstratos:
+ + public abstract boolean autorizarCondutor(Scanner input)
+
+ + public abstract boolean desautorizarCondutor(Scanner input)
+
+ + public abstract boolean gerarSinistro(Scanner input)
+
+ + public abstract double calcularValor()
+
+ + public abstract String toString()
+ */
+	
+	
 	private static int contador = 1;
 	private final int id;
 	private Date dataInicio;

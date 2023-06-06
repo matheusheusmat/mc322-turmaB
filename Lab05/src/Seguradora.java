@@ -2,6 +2,72 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Seguradora {
+
+/* Classe "Seguradora"
+ * Variáveis de classe
+ - static ArrayList<Seguradora> listaSeguradoras
+ 
+ * Variáveis de instância
+ - String nome
+ - (final) String cnpj
+ - String telefone
+ - String email
+ - String endereco
+ - ArrayList<Sinistro> listaSinistros
+ - ArrayList<Cliente> listaClientes
+ 
+ * Getters e setters para cada variável.
+ 
+ * Construtor para a classe.
+ 
+ * Métodos da classe:
+ + public static void cadastrarSeguradora(Scanner input): instancia e adiciona uma Seguradora
+ na listaSeguradoras.
+ 
+ + public static Seguradora trocarSeguradora(Scanner input): imprime todas as Seguradoras
+ adicionadas na listaSeguradoras, pede ao usuário escolher e a retorna.
+ 
+ + public boolean cadastrarCliente(Cliente cliente): dado um Cliente, o adiciona na listaClientes
+ da Seguradora.
+ 
+ + public ArrayList<Cliente> listarClientes(String tipo): dado um tipo de Cliente, retorna
+ uma ArrayList com todos os clientes do tipo especificado, se houver na listaClientes.  
+ 
+ + public boolean atualizarVeiculoPF(Scanner input): atualiza a listaVeiculos de um ClientePF,
+ adicionando ou removendo veiculos, chamando os métodos específicos na classe ClientePF.
+ 
+ + public boolean cadastrarSeguro(Scanner input): cadastra um Seguro para um Cliente, dado
+ seu tipo. Imprime todos os Clientes daquele tipo, e, escolhido um, cadastra um Seguro do
+ tipo correto (SeguroPF ou SeguroPJ).
+ 
+ + public void adicionarSeguro(Seguro seguro): adiciona um Seguro na listaSeguros.
+ 
+ + public void listarTodosSeguros(): lista todos os Seguros da listaSeguros.
+ 
+ + public ArrayList<Seguro> listarSegurosPorCliente(Scanner input, String modo): pede um tipo
+ de Cliente, imprime a lista de Clientes com o tipo. O usuário escolhe o Cliente desejado.
+ Dado esse cliente, imprime todos os Seguros associados a ele.
+ 
+ + public ArrayList<Sinistro> listarSinistrosPorCliente(Scanner input): pede um tipo
+ de Cliente, imprime a lista de Clientes com o tipo. O usuário escolhe o Cliente desejado.
+ Dado esse cliente, imprime todos os Sinistros associados a Seguros que, por sua vez, estão
+ associados a esse Cliente.
+ 
+ + public boolean cancelarSeguro(Scanner input, Seguro seguro): cancela um Seguro, removendo-o
+ da listaSeguros.
+ 
+ + private void removerSegurosDeCliente(Cliente cl): dado um Cliente a ser excluído da
+ listaClientes da Seguradora, remove todos os Seguros associados a ele.
+ 
+ + public boolean excluirCliente(Scanner input): exclui um Cliente da listaClientes da
+ Seguradora. Também remove todos os Seguros associados a ele, caso existam.
+ 
+ + public void calcularReceita(): calcula o valorMensal de cada um dos Seguros presentes
+ na listaSeguros, somando-os. A soma é a chamada "receita" da Seguradora, que é impressa.
+
+ + public String toString(): Retorna uma String com alguns dos atributos de instância.
+ */
+	
 	private String nome;
 	private final String cnpj;
 	private String telefone;
@@ -232,7 +298,7 @@ public class Seguradora {
 		}
 		
 		else if (inputAtual.equals("2")) {
-			return clpf.removerVeiculo(input);
+			return clpf.removerVeiculo(input, this);
 		}
 		else {
 			System.out.println("-- ERRO! Opcao invalida! --");

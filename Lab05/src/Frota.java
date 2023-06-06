@@ -2,6 +2,29 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Frota {
+	/* Classe "Frota"
+	 * Variáveis de classe:
+	 - static int contador
+	 * Variáveis de instância:
+	 - String code
+	 - ArrayList<Veiculo> listaVeiculos
+	 - int qtdVeiculos
+	 
+	 * Getters e setters para cada variável.
+	 
+	 * Construtor para a classe.
+
+	 * Métodos de classe abstratos:
+	 + public boolean adicionarVeiculo(Scanner input): instancia um Veiculo e o adiciona na
+	 listaVeiculos da Frota.
+	 
+	 + public boolean removerVeiculo(Scanner input): imprime todos os Veiculos da frota e pede
+	 ao usuário o número relacionado ao Veiculo que deseja remover. Remove o Veiculo da
+	 listaVeiculos.
+	 
+	 + public String toString(): Retorna uma String com alguns dos atributos de instância.
+	 */
+	
 	private static int contador = 1;
 	private String code;
 	private ArrayList<Veiculo> listaVeiculos;

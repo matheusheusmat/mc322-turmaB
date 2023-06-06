@@ -1,5 +1,16 @@
-
 public abstract class Cliente {
+ /* Classe abstrata "Cliente"
+ * Variáveis de instância:
+ - String nome
+ - String endereco
+ - String telefone
+ - String email
+ - int idade
+ * Getters e setters para cada variável.
+ 
+ * Construtor para a classe, que recebe String nome.
+ */
+
 	private String nome;
 	private String telefone;
 	private String endereco;
@@ -40,4 +51,6 @@ public abstract class Cliente {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
+	
+	public abstract String toString();
 }

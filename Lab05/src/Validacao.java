@@ -8,22 +8,35 @@ import java.util.Scanner;
  * Métodos de classe:
  + static boolean ehInteiro(String str): retorna true caso for um valor inteiro, e false
  caso não. Isso é feito pelo tratamento de exceções.
+ 
  + static boolean apenasLetras(String str): retorna se uma String é formada apenas por letras
  e caracteres de espaço.
+ 
  + static boolean ehIntervaloValido(String str, int ini, int fim): retorna se uma String, que
  previamente deve ser um inteiro, está dentro de um intervalo [ini, fim).
+ 
  + static boolean validarCPF(String cpf): dada uma String cpf, verifica se é válido por meio 
  do cálculo dos dois dígitos verificadores e da quantidade de dígitos numéricos. 
  Mais detalhes no método.
+ 
  + static boolean validarCNPJ(String cnpj): dada uma String cnpj, verifica se é válido por meio 
  do cálculo dos dois dígitos verificadores e da quantidade de dígitos numéricos. 
  Mais detalhes no método.
- + static boolean validarData(String dataStr): verifica se a data dada na entrada é válida, 
+ 
+ - static boolean validarData(String dataStr): verifica se a data dada na entrada é válida, 
  seguindo o modelo DD/MM/AAAA.
+ 
  + static Data formatarData(String dataStr, Scanner input): dada uma String, retorna uma data 
  formatada do modo desejado, se for possível.
+ 
  + static int calcularIdade(Date data): calcula a idade de um ClientePF, data sua data de nascimento
  e a data atual, calculando a diferença em anos.
+ 
+ + static void listarTodos(ArrayList lista, String tipo): dada uma lista, imprime todos os
+ objetos dela, enumerando-os.
+ 
+ + static boolean inicioAntesDoFim(Date dataInicio, Date dataFim): verifica se dataInicio é
+ anterior a dataFim. Retorna true se verdadeiro.
  */
 
 
@@ -149,7 +162,7 @@ public class Validacao {
 	}
 
 	
-	public static boolean validarData(String dataStr) {
+	private static boolean validarData(String dataStr) {
 		String dataSoNum = dataStr.replaceAll("[^0-9]", "");
 		if (dataStr.length() != 10 || dataSoNum.length() != 8 ||
 		dataStr.charAt(2) != '/' || dataStr.charAt(5) != '/') {

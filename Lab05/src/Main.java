@@ -3,23 +3,29 @@ import java.util.Scanner;
 
 public class Main {
 
-	/* Classe "Main" for lab05.java by heusmat
-	 * Métodos:
-	 - static MenuOperacoes lerOp(int opcaoInt): lê o número inserido pelo usuário, e
-	 retorna a descrição presente na opção correspondente na classe enum MenuOperacoes.
-	 - static void printMenuInicial: imprime as descrições correspondentes ao menuInicial.
-	 - static void printSubCadastar: imprime as descrições correspondentes ao submenuCadastrar.
-	 - static void printSubListar: imprime as descrições correspondentes ao submenuListar.
-	 - static void printSubExcluir: imprime as descrições correspondentes ao submenuExcluir.
-	 - static void menuInicial: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
-	método condizente com a selecionada. 
-	 - static void submenuCadastrar: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
-	método condizente com a selecionada.
-	 - static void submenuListar: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
-	método condizente com a selecionada.
-	 - static void submenuExcluir: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
-	método condizente com a selecionada.
-	 */
+/* Classe "Main" for lab05.java by heusmat
+ * Métodos:
+ - private static MenuOperacoes lerOp(int opcaoInt): lê o número inserido pelo usuário, e
+ retorna a descrição presente na opção correspondente na classe enum MenuOperacoes.
+ - private static void printMenuInicial: imprime as descrições correspondentes ao menuInicial.
+ - private static void printMenuPrincipal: imprime as descrições correspondentes ao menuPrincipal.
+ - private static void printSubCadastrar: imprime as descrições correspondentes ao submenuCadastrar.
+ - private static void printSubListar: imprime as descrições correspondentes ao submenuListar.
+ - private static void printSubSeguro: imprime as descrições correspondentes ao submenuSeguro.
+ - private static void printSubFrota: imprime as descrições correspondentes ao submenuFrota.
+ - private static void menuInicial: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
+ método condizente com a selecionada. 
+ - private static void menuPrincipal: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
+ método condizente com a selecionada. 
+ - private static void submenuCadastrar: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
+ método condizente com a selecionada.
+ - private static void submenuListar: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
+ método condizente com a selecionada.
+ - private static void submenuSeguro: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
+ método condizente com a selecionada.
+ - private static void submenuFrota: lê do usuário, chama a opção desejada do MenuOperacoes e chama o
+ método condizente com a selecionada.
+ */
 	
 	private static MenuOperacoes lerOp(int opcaoInt) {
 		MenuOperacoes opcaoMenu = (MenuOperacoes.values())[opcaoInt];
@@ -210,7 +216,10 @@ public class Main {
 						System.out.println("-- Operacao cancelada. --\n");
 					break;
 				case CAD_VEICULO:
-					seg.atualizarVeiculoPF(input);
+					if (seg.atualizarVeiculoPF(input))
+						System.out.println("-- Veiculo removido com sucesso! --\n");
+					else
+						System.out.println("-- Operacao cancelada. --\n");	
 					break;
 				case VOLTAR:
 					voltar = true;
@@ -338,6 +347,7 @@ public class Main {
 				case SEG_CANCELAR:
 					seg.cancelarSeguro(input, seguro);
 					System.out.println("-- Seguro cancelado com sucesso! --\n");
+					voltar = true;
 					break;
 				case VOLTAR:
 					voltar = true;
@@ -393,7 +403,7 @@ public class Main {
 				MenuOperacoes opcao = lerOp(opcaoInt + 20);
 				switch (opcao) {
 				case FR_CADASTRAR:
-					clpj.cadastrarFrota(input);
+					clpj.cadastrarFrota();
 					break;
 				case FR_ATUALIZAR:
 					clpj.atualizarFrota(input);
@@ -402,7 +412,7 @@ public class Main {
 					clpj.getVeiculosPorFrota(input);
 					break;
 				case FR_EXCLUIR:
-					clpj.removerFrota(input);
+					clpj.removerFrota(input, seg);
 					break;
 				case VOLTAR:
 					voltar = true;

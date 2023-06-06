@@ -3,6 +3,42 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class ClientePF extends Cliente {
+/* Classe "ClientePF" herda de classe "Cliente"
+ * Variáveis de instância:
+ - (final) String cpf
+ - Date dataNascimento 
+ - String educacao 
+ - String genero 
+ - ArrayList<Veiculo> listaVeiculos
+ - int qtdVeicSegurados
+ 
+ * Getters e setters para cada variável.
+ 
+ * Construtor para a classe, que recebe nome e cpf.
+ 
+ * Métodos da classe:
+ + public static ClientePF criarClientePF(Scanner input): instancia um ClientePF e recebe 
+ as informações do usuário (nome, endereço, CPF, data de nascimento, gênero, idade,
+ e-mail, telefone educação e classe econômica). Ao final, retorna o ClientePF criado. 
+	  
+ + public boolean adicionarVeiculo(Scanner input): instancia e adiciona um Veiculo na 
+ listaVeiculos de um ClientePF.
+ 
+ + public boolean removerVeiculo(Scanner input, Seguradora seg): imprime e remove um veiculo
+ da listaVeiculos. Também remove um Seguro associado a ele, caso exista.
+ 
+ - private boolean temSeguroERemove(Seguradora seg, Veiculo veic, Boolean remover): procura
+ um Veiculo na listaSeguros de uma Seguradora. Retorna true, caso encontre. Se remover == true, 
+ e o encontrar, o remove da lista.
+ 
+ + public boolean cadastrarSeguroPF(Scanner input, Seguradora seg): cadastra um Seguro, caso
+ o ClientePF possua Veiculos. Realiza a verificacao se o Veiculo já é ou não segurado, ou seja,
+ possui um Seguro associado a ele.
+
+ + public String toString(): Retorna uma String com alguns dos atributos de instância.
+ 
+ */
+	
 	private final String cpf;
 	private Date dataNascimento;
 	private String genero;
@@ -131,7 +167,7 @@ public class ClientePF extends Cliente {
 		return true;
 	}
 	
-	public boolean removerVeiculo(Scanner input) {
+	public boolean removerVeiculo(Scanner input, Seguradora seg) {
 		System.out.println("** REMOVER VEICULO **");
 		if (listaVeiculos.isEmpty()) {
 			System.out.println("-- ERRO! Nenhum Veiculo foi cadastrado para esse Cliente PF. --");
@@ -154,24 +190,33 @@ public class ClientePF extends Cliente {
 			 if (inputAtual.equals("0"))
 				 return false;
 		}
-		
-		listaVeiculos.remove(Integer.parseInt(inputAtual) - 1);
-		return true;
+		Veiculo veic = listaVeiculos.get(Integer.parseInt(inputAtual) - 1);
+		temSeguroERemove(seg, veic, true);
+		return listaVeiculos.remove(veic);
 	}
 	
-	private boolean temSeguro(Seguradora seg, Veiculo veic) {
+	private boolean temSeguroERemove(Seguradora seg, Veiculo veic, Boolean remover) {
+		SeguroPF seguroPF = null;
+		boolean encontrou = false;
 		if ((seg.getListaSeguros()).isEmpty())
-			return false;
+			return encontrou;
 		
 		for (Seguro seguro : seg.getListaSeguros()) {
 			if (seguro.getClass().equals(SeguroPF.class)) {
-				SeguroPF seguroPF = (SeguroPF)seguro;
+				seguroPF = (SeguroPF)seguro;
 				if (seguroPF.getVeiculo() == veic) {
-					return true;
+					encontrou = true;
+					break;
 				}
 			}
 		}
-		return false;
+		
+		if (encontrou && remover) {
+			seg.getListaSeguros().remove(seguroPF);
+			qtdVeicSegurados--;
+		}
+		
+		return encontrou;
 	}
 	
 	public boolean cadastrarSeguroPF(Scanner input, Seguradora seg) {
@@ -199,7 +244,7 @@ public class ClientePF extends Cliente {
 		
 		Veiculo veic = listaVeiculos.get(Integer.parseInt(inputAtual) - 1);
 		
-		if (temSeguro(seg, veic)) {
+		if (temSeguroERemove(seg, veic, false)) {
 			System.out.println("-- ATENCAO! Este Veiculo ja possui Seguro! --");
 			return false;
 		}

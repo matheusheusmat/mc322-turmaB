@@ -3,6 +3,45 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class ClientePJ extends Cliente {
+ /* Classe "ClientePJ" herda de classe "Cliente"
+ * Variáveis de instância:
+ - (final) String cnpj
+ - Date dataFundacao
+ - int qtdFuncionarios
+ - ArrayList<Frota> listaFrotas
+ 
+ * Getters e setters para cada variável.
+ 
+ * Construtor para a classe, que recebe nome e cnpj.
+ 
+ * Métodos da classe:
+ + public static ClientePF criarClientePJ(Scanner input): instancia um ClientePJ e recebe 
+ as informações do usuário (nome, endereço, CNPJ, data de fundação, idade, quantidade de
+ funcionários, e-mail, telefone). Ao final, retorna o ClientePJ criado. 
+	  
+ + public boolean cadastrarFrota(Scanner input): instancia e adiciona uma Frota na 
+ listaFrotas de um ClientePJ.
+ 
+ + public boolean atualizarFrota(Scanner input): adiciona ou remove um Veiculo de uma Frota,
+ chamando, para isso, os métodos adicionarVeiculo e removerVeiculo da classe Frota.
+ 
+ + public boolean getVeiculosPorFrota(Scanner input): imprime todos os veículos de uma Frota, 
+ caso haja frotas e tenha veículos nela.
+ 
+ + public boolean removerFrota(Scanner input, Seguradora seg): imprime e remove uma Frota
+ da listaFrotas. Também remove um Seguro associado a ela, caso exista.
+ 
+ - private boolean temSeguroERemove(Seguradora seg, Veiculo veic, Boolean remover): procura
+ uma Frota na listaSeguros de uma Seguradora. Retorna true, caso encontre. Se remover == true, 
+ e a encontrar, a remove da lista.
+ 
+ + public boolean cadastrarSeguroPJ(Scanner input, Seguradora seg): cadastra um Seguro, caso
+ o ClientePJ possua Frotas. Realiza a verificacao se a Frota já é ou não segurada, ou seja,
+ possui um Seguro associado a ela.
+
+ + public String toString(): Retorna uma String com alguns dos atributos de instância. 
+ */
+
 	private final String cnpj;
 	private Date dataFundacao;
 	private int qtdFuncionarios;
@@ -95,7 +134,7 @@ public class ClientePJ extends Cliente {
 		return cl;
 	}
 	
-	public boolean cadastrarFrota(Scanner input) {
+	public boolean cadastrarFrota() {
 		Frota fr = new Frota();
 		listaFrotas.add(fr);
 		System.out.println("-- Frota cadastrada com sucesso! --");
@@ -187,7 +226,7 @@ public class ClientePJ extends Cliente {
 		return true;
 	}
 	
-	public boolean removerFrota(Scanner input) {
+	public boolean removerFrota(Scanner input, Seguradora seg) {
 		System.out.println("** REMOVER FROTA **");
 		if (listaFrotas.isEmpty()) {
 			System.out.println("-- ERRO! Nenhuma Frota foi cadastrada para esse Cliente PJ. --\n");
@@ -211,23 +250,32 @@ public class ClientePJ extends Cliente {
 				 return false;
 		}
 		
-		listaFrotas.remove(Integer.parseInt(inputAtual) - 1);
-		return true;
+		Frota fr = listaFrotas.get(Integer.parseInt(inputAtual) - 1);
+		temSeguroERemove(seg, fr, true);
+		return listaFrotas.remove(fr);
 	}
 	
-	private boolean temSeguro(Seguradora seg, Frota fr) {
+	private boolean temSeguroERemove(Seguradora seg, Frota fr, Boolean remover) {
+		SeguroPJ seguroPJ = null;
+		boolean encontrou = false;
 		if ((seg.getListaSeguros()).isEmpty())
-			return false;
+			return encontrou;
 		
 		for (Seguro seguro : seg.getListaSeguros()) {
 			if (seguro.getClass().equals(SeguroPJ.class)) {
-				SeguroPJ seguroPJ = (SeguroPJ)seguro;
+				seguroPJ = (SeguroPJ)seguro;
 				if (seguroPJ.getFrota() == fr) {
-					return true;
+					encontrou = true;
+					break;
 				}
 			}
 		}
-		return false;
+		
+		if (encontrou && remover) {
+			seg.getListaSeguros().remove(seguroPJ);
+		}
+		
+		return encontrou;
 	}
 	
 	public boolean cadastrarSeguroPJ(Scanner input, Seguradora seg) {
@@ -255,7 +303,7 @@ public class ClientePJ extends Cliente {
 		
 		Frota fr = listaFrotas.get(Integer.parseInt(inputAtual) - 1);
 		
-		if (temSeguro(seg, fr)) {
+		if (temSeguroERemove(seg, fr, false)) {
 			System.out.println("-- ATENCAO! Esta Frota ja possui Seguro! --");
 			return false;
 		}
@@ -265,6 +313,7 @@ public class ClientePJ extends Cliente {
 		return true;
 	}
 	
+	@Override
 	public String toString() {
 		String str = "Nome da Empresa       | " + this.getNome() + "\n"
 				   + "CNPJ                  | " + cnpj + "\n"

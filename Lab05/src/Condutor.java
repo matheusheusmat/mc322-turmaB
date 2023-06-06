@@ -2,6 +2,27 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Condutor {
+/* Classe "Condutor"
+
+ * Variáveis de instância:
+ - String nome
+ - (final) String cpf
+ - Date dataNascimento
+ - int idade
+ - String telefone
+ - String endereco
+ - String email
+ - ArrayList<Sinistro> listaSinistros
+ 
+ * Getters e setters para cada variável.
+ 
+ * Construtor para a classe.
+	 
+ * Métodos de classe:
+ + public String toString(): Retorna uma String com alguns dos atributos de instância.
+	
+ */
+
 	private String nome;
 	private final String cpf;
 	private Date dataNascimento;

@@ -3,6 +3,32 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class SeguroPJ extends Seguro {
+ /* Classe "SeguroPF" herda de "Seguro"
+ * Variáveis de instância:
+ - Veiculo veiculo
+ - ClientePF cliente
+ 
+ * Getters e setters para cada variável.
+ 
+ * Construtor para a classe.
+	 
+ * Métodos de classe:
+ 
+ + public boolean autorizarCondutor(Scanner input): instancia e adiciona um Condutor na
+ listaCondutores do Seguro.
+
+ + public boolean desautorizarCondutor(Scanner input): imprime todos os condutores da
+ listaCondutores, caso existam. Pede ao usuário que escolha um para remover da lista.
+
+ + public boolean gerarSinistro(Scanner input): instancia e adiciona um Sinistro, tanto na
+ listaSinistros do Seguro quanto na listaSinistros do Condutor envolvido.
+
+ + public double calcularValor(): realiza o cálculo do valorMensal do Seguro, de acordo com
+ uma fórmula específica. 
+
+ + public String toString(): Retorna uma String com alguns dos atributos de instância.
+ */
+
 	private Frota frota;
 	private ClientePJ cliente;
 	
